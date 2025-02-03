@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { 
   Users, 
   Calendar, 
@@ -13,20 +14,32 @@ import {
 } from 'lucide-react';
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
-  <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+  <motion.div 
+    className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+    initial={{ opacity: 0, y: 20 }} 
+    animate={{ opacity: 1, y: 0 }} 
+    exit={{ opacity: 0, y: -20 }} 
+    transition={{ duration: 0.5 }}
+  >
     <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-100 mb-4">
       <Icon className="h-6 w-6 text-indigo-600" />
     </div>
     <h3 className="text-xl font-semibold mb-2">{title}</h3>
     <p className="text-gray-600">{description}</p>
-  </div>
+  </motion.div>
 );
 
 const StatCard = ({ number, label }) => (
-  <div className="bg-white p-6 rounded-lg shadow text-center">
+  <motion.div 
+    className="bg-white p-6 rounded-lg shadow text-center"
+    initial={{ opacity: 0, y: 20 }} 
+    animate={{ opacity: 1, y: 0 }} 
+    exit={{ opacity: 0, y: -20 }} 
+    transition={{ duration: 0.5 }}
+  >
     <div className="text-3xl font-bold text-indigo-600 mb-2">{number}</div>
     <div className="text-gray-600">{label}</div>
-  </div>
+  </motion.div>
 );
 
 const Features = () => {
@@ -64,7 +77,13 @@ const Features = () => {
   ];
 
   return (
-    <div className="pt-16 bg-gray-50">
+    <motion.div 
+      className="pt-16 bg-gray-50"
+      initial={{ opacity: 0, y: 20 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      exit={{ opacity: 0, y: -20 }} 
+      transition={{ duration: 0.5 }}
+    >
       {/* Hero Section */}
       <div className="bg-indigo-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -118,37 +137,27 @@ const Features = () => {
           </div>
 
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-indigo-100 mx-auto mb-4">
-                <Target className="h-8 w-8 text-indigo-600" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Set Your Goals</h3>
-              <p className="text-gray-600">Define your academic objectives and learning preferences</p>
-            </div>
-
-            <div className="text-center">
-              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-indigo-100 mx-auto mb-4">
-                <Users className="h-8 w-8 text-indigo-600" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Get Matched</h3>
-              <p className="text-gray-600">AI pairs you with compatible study partners</p>
-            </div>
-
-            <div className="text-center">
-              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-indigo-100 mx-auto mb-4">
-                <Clock className="h-8 w-8 text-indigo-600" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Schedule Sessions</h3>
-              <p className="text-gray-600">Automatically find the best time for group study</p>
-            </div>
-
-            <div className="text-center">
-              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-indigo-100 mx-auto mb-4">
-                <Award className="h-8 w-8 text-indigo-600" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Track Progress</h3>
-              <p className="text-gray-600">Monitor your improvement with detailed analytics</p>
-            </div>
+            {[
+              { icon: Target, title: "Set Your Goals", description: "Define your academic objectives and learning preferences" },
+              { icon: Users, title: "Get Matched", description: "AI pairs you with compatible study partners" },
+              { icon: Clock, title: "Schedule Sessions", description: "Automatically find the best time for group study" },
+              { icon: Award, title: "Track Progress", description: "Monitor your improvement with detailed analytics" },
+            ].map((step, index) => (
+              <motion.div 
+                className="text-center"
+                key={index}
+                initial={{ opacity: 0, y: 20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                exit={{ opacity: 0, y: -20 }} 
+                transition={{ duration: 0.5 }}
+              >
+                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-indigo-100 mx-auto mb-4">
+                  <step.icon className="h-8 w-8 text-indigo-600" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+                <p className="text-gray-600">{step.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
@@ -167,7 +176,7 @@ const Features = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

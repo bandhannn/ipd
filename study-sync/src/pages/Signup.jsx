@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = { username: name, email, password };
@@ -13,6 +13,7 @@ const Signup = () => {
     try {
       const response = await axios.post("http://localhost:5000/signup", formData);
       alert(response.data.message); // Handle success message from the backend
+      navigate("/profile");
     } catch (error) {
       console.error(error);
       alert("Error signing up");

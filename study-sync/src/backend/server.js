@@ -15,10 +15,10 @@ app.use(cors());
 const {Pool} = pkg
 // PostgreSQL connection setup
 const pool = new Pool({
-    user: process.env.PG_USER || "postgres", // PostgreSQL username from .env
-    host: process.env.PG_HOST || "localhost",
-    database: process.env.PG_DB || "postgres", // Your database name
-    password: process.env.PG_PASSWORD || "Akshay2407@", // PostgreSQL password
+    user: process.env.PG_USER || "postgres", 
+    host: process.env.PG_HOST || "localhost", 
+    database: process.env.PG_DB || "postgres", 
+    password: process.env.PG_PASSWORD || "Akshay2407@" , 
     port: process.env.PG_PORT || 5432,
 });
 
