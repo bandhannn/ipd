@@ -6,10 +6,24 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ email, password });
-    navigate("/profile");
+    try {
+      const response = await axios.post('http://localhost:5000/login', { email, password });
+      const { token } = response.data;
+
+      if (token) {
+        // Store token in localStorage
+        localStorage.setItem('token', token);
+
+        // Redirect to dashboard or home page after successful login
+        navigate('/dashboard');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setErrorMessage(error.response?.data?.message || 'Something went wrong');
+    }
   };
 
   return (

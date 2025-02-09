@@ -9,16 +9,26 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = { username: name, email, password };
-
+  
     try {
+      // Sign up the user
       const response = await axios.post("http://localhost:5000/signup", formData);
-      alert(response.data.message); // Handle success message from the backend
-      navigate("/profile");
+      
+      if (response.status === 201) {
+        alert(response.data.message); // Handle success message from backend
+  
+        // Store user ID for profile update
+        localStorage.setItem("userId", response.data.user.id);
+  
+        // Redirect to profile page
+        navigate("/profile");
+      }
     } catch (error) {
       console.error(error);
       alert("Error signing up");
     }
   };
+  
 
   return (
     <div className="pt-20 min-h-screen bg-gray-50">

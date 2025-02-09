@@ -9,6 +9,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Features from './pages/Features';
 import ProfilePage from './pages/ProfilePage';
+import Dashboard from './pages/Dashboard';
+import Chatpage from './pages/Chatpage';
 
 const App = () => {
   const location = useLocation(); // Get the current location (path)
@@ -29,6 +31,8 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path="/groups/:groupId" element={<Chatpage />} />
         </Routes>
 
         {/* Footer remains the same */}

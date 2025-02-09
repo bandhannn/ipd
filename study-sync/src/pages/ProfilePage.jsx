@@ -23,7 +23,9 @@ import {
   Schedule, 
   Group 
 } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
+const navigate = useNavigate();
 const domains = [
   'Mathematics', 'Physics', 'Chemistry', 'Programming', 
   'Data Structures', 'Machine Learning', 'Other'
@@ -80,6 +82,7 @@ const ProfilePage = () => {
       return { ...prev, programmingLanguages: newLanguages };
     });
   };
+   
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -91,23 +94,35 @@ const ProfilePage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await fetch('/api/profile', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
 
-      if (response.ok) {
-        // Handle successful submission
-        console.log('Profile submitted successfully');
-      }
+    try {
+        const response = await fetch("http://localhost:5000/update-profile", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: formData.email, // Ensure the user’s email is used to update the correct record
+                primaryDomain: formData.primaryDomain,
+                studyTime: formData.studyTime,
+                year: formData.year,
+                groupSize: formData.groupSize,
+            }),
+        });
+
+        if (response.ok) {
+            console.log("Profile updated successfully");
+            alert("Profile updated!");
+            navigate('/dashboard');
+        } else {
+            console.error("Profile update failed");
+            alert("Error updating profile");
+        }
     } catch (error) {
-      console.error('Submission error:', error);
+        console.error("Submission error:", error);
     }
-  };
+};
+
 
   const steps = ['Personal Info', 'Academic Details', 'Study Preferences'];
 
@@ -233,6 +248,17 @@ const ProfilePage = () => {
             ))}
           </TextField>
         </Grid>
+        {formData.primaryDomain === 'Other' && (
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Specify Other Domain"
+              value={formData.otherDomain}
+              onChange={handleChange('otherDomain')}
+              variant="outlined"
+            />
+          </Grid>
+        )}
         {formData.primaryDomain === 'Programming' && (
           <Grid item xs={12}>
             <Typography variant="subtitle1">Programming Languages</Typography>
@@ -284,7 +310,7 @@ const ProfilePage = () => {
             onChange={handleChange('groupSize')}
             variant="outlined"
           >
-            {['Small (2-3)', 'Medium (4-6)', 'Large (7+)'].map((size) => (
+            {['Small', 'Medium', 'Large'].map((size) => (
               <MenuItem key={size} value={size}>
                 {size}
               </MenuItem>
@@ -369,3 +395,26 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
