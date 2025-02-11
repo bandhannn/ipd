@@ -2,23 +2,27 @@ import React, { useState } from "react";
 import { User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Import axios
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  const [errorMessage, setErrorMessage] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/login', { email, password });
       const { token } = response.data;
-
+      if(email){
+        localStorage.setItem("userEmail", email);
+      }
       if (token) {
         // Store token in localStorage
         localStorage.setItem('token', token);
 
         // Redirect to dashboard or home page after successful login
-        navigate('/dashboard');
+        navigate('/chat');
       }
     } catch (error) {
       console.error('Login error:', error);
@@ -34,6 +38,7 @@ const Login = () => {
           <h2 className="text-2xl font-bold text-gray-900">Welcome Back</h2>
           <p className="text-gray-600">Sign in to your account</p>
         </div>
+        {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>} 
 
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
@@ -70,7 +75,7 @@ const Login = () => {
             </a>
           </div>
 
-          <button className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">
+          <button type='submit' className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">
             Sign In
           </button>
         </form>

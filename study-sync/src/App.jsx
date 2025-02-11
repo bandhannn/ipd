@@ -16,11 +16,12 @@ const App = () => {
   const location = useLocation(); // Get the current location (path)
 
   const isProfilePage = location.pathname === '/profile'; 
-
+  const isDashboard = location.pathname === '/dashboard'; 
+  const isChatpage = location.pathname === '/chat';
   return (
       <div className="min-h-screen bg-white flex flex-col">
         {/* Navbar remains the same */}
-        {!isProfilePage && <Navbar />}
+        {!(isProfilePage || isDashboard || isChatpage) && <Navbar />}
 
         {/* Define routes here */}
         <Routes>
@@ -31,12 +32,15 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path="/groups/:groupId" element={<Chatpage />} />
+          <Route path="/dashboard" element={<Dashboard />}>
+            {/* <Route path="profile" element={<Profile />} /> */}
+            {/* <Route path="chat" element={<Chatpage />} /> */}
+          </Route>
+        <Route path="/chat" element={<Chatpage  />} />
         </Routes>
-
+        
         {/* Footer remains the same */}
-        {!isProfilePage && <Footer />}
+        {!(isProfilePage || isDashboard || isChatpage) && <Footer />}
       </div>
     
   );

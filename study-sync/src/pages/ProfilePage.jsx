@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Container, 
   Typography, 
@@ -23,9 +24,9 @@ import {
   Schedule, 
   Group 
 } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
 
-const navigate = useNavigate();
+
+
 const domains = [
   'Mathematics', 'Physics', 'Chemistry', 'Programming', 
   'Data Structures', 'Machine Learning', 'Other'
@@ -35,6 +36,7 @@ const programmingLanguages = ['C', 'C++', 'Python', 'Java', 'JavaScript', 'Ruby'
 
 const ProfilePage = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -113,7 +115,7 @@ const ProfilePage = () => {
         if (response.ok) {
             console.log("Profile updated successfully");
             alert("Profile updated!");
-            navigate('/dashboard');
+            
         } else {
             console.error("Profile update failed");
             alert("Error updating profile");
@@ -384,7 +386,7 @@ const ProfilePage = () => {
                 type="submit"
                 sx={{ ml: 'auto' }}
               >
-                Complete Profile
+              <Link to='/chat'>Complete Profile</Link>
               </Button>
             )}
           </Box>

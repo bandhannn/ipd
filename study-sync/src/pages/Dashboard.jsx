@@ -166,7 +166,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import io from 'socket.io-client';
 import axios from 'axios';
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
 
 
@@ -177,9 +177,18 @@ const Dashboard = () => {
     const [groups, setGroups] = useState([]);
     const navigate = useNavigate();
     const token = localStorage.getItem('token'); // Or sessionStorage, depending on where you store it
-
+    const decodeJWT = (token) => {
+        try {
+          const base64Url = token.split(".")[1];
+          const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+          return JSON.parse(atob(base64));
+        } catch (e) {
+          console.error("Invalid token", e);
+          return null;
+        }
+      };
     if (token) {
-        const decodedToken = jwt_decode(token);
+        const decodedToken = decodeJWT(token);
         const email = decodedToken.email;
         console.log(email);
     } else {
