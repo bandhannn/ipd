@@ -11,24 +11,26 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     try {
+      // Clear previous session data
+      localStorage.clear();
+  
       const response = await axios.post('http://localhost:5000/login', { email, password });
       const { token } = response.data;
-      if(email){
-        localStorage.setItem("userEmail", email);
-      }
-      if (token) {
-        // Store token in localStorage
-        localStorage.setItem('token', token);
-
-        // Redirect to dashboard or home page after successful login
-        navigate('/chat');
-      }
+  
+      // Store user email and token
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem('token', token);
+  
+      // Navigate to chat page after login
+      navigate('/dashboard');
     } catch (error) {
       console.error('Login error:', error);
       setErrorMessage(error.response?.data?.message || 'Something went wrong');
     }
   };
+  
 
   return (
     <div className="pt-20 min-h-screen bg-gray-50 flex items-center justify-center">
@@ -70,11 +72,14 @@ const Login = () => {
               <input type="checkbox" className="h-4 w-4 text-indigo-600" />
               <label className="ml-2 text-gray-600">Remember me</label>
             </div>
-            <a href="#" className="text-indigo-600 hover:text-indigo-800">
+            
+            
+          </div>
+          <div>
+          <a href="#" className="text-indigo-600 hover:text-indigo-800">
               Forgot password?
             </a>
           </div>
-
           <button type='submit' className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">
             Sign In
           </button>
