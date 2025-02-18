@@ -23,8 +23,22 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
-    command: >
-      bash -c "airflow db init && airflow webserver && airflow scheduler"
+    command: airflow webserver
+
+  airflow-scheduler:
+    image: apache/airflow:latest
+    restart: always
+    depends_on:
+      - webserver
+      - postgres
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+    command: airflow scheduler
  
 volumes:
   postgres_db:

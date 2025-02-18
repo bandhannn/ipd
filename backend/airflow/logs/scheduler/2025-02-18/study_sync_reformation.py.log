@@ -1,0 +1,64 @@
+[2025-02-18T18:28:11.688+0000] {processor.py:186} INFO - Started process (PID=164) to work on /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:28:11.690+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/study_sync_reformation.py for tasks to queue
+[2025-02-18T18:28:11.692+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:11.692+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:28:11.866+0000] {processor.py:925} INFO - DAG(s) 'study_sync_reformation' retrieved from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:28:12.270+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:12.269+0000] {override.py:1912} INFO - Created Permission View: can read on DAG:study_sync_reformation
+[2025-02-18T18:28:12.302+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:12.302+0000] {override.py:1912} INFO - Created Permission View: can delete on DAG:study_sync_reformation
+[2025-02-18T18:28:12.317+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:12.317+0000] {override.py:1912} INFO - Created Permission View: can edit on DAG:study_sync_reformation
+[2025-02-18T18:28:12.330+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:12.329+0000] {override.py:1912} INFO - Created Permission View: can read on DAG Run:study_sync_reformation
+[2025-02-18T18:28:12.338+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:12.337+0000] {override.py:1912} INFO - Created Permission View: can delete on DAG Run:study_sync_reformation
+[2025-02-18T18:28:12.350+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:12.349+0000] {override.py:1912} INFO - Created Permission View: menu access on DAG Run:study_sync_reformation
+[2025-02-18T18:28:12.358+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:12.358+0000] {override.py:1912} INFO - Created Permission View: can create on DAG Run:study_sync_reformation
+[2025-02-18T18:28:12.359+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:12.358+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-18T18:28:12.379+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:12.379+0000] {dag.py:3262} INFO - Creating ORM DAG for study_sync_reformation
+[2025-02-18T18:28:12.399+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:12.399+0000] {dag.py:4180} INFO - Setting next_dagrun for study_sync_reformation to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-18T18:28:12.425+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/study_sync_reformation.py took 0.746 seconds
+[2025-02-18T18:28:42.703+0000] {processor.py:186} INFO - Started process (PID=169) to work on /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:28:42.705+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/study_sync_reformation.py for tasks to queue
+[2025-02-18T18:28:42.707+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:42.707+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:28:42.726+0000] {processor.py:925} INFO - DAG(s) 'study_sync_reformation' retrieved from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:28:42.761+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:42.760+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-18T18:28:42.794+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:28:42.793+0000] {dag.py:4180} INFO - Setting next_dagrun for study_sync_reformation to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-18T18:28:42.819+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/study_sync_reformation.py took 0.122 seconds
+[2025-02-18T18:29:13.091+0000] {processor.py:186} INFO - Started process (PID=174) to work on /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:29:13.092+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/study_sync_reformation.py for tasks to queue
+[2025-02-18T18:29:13.096+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:29:13.096+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:29:13.119+0000] {processor.py:925} INFO - DAG(s) 'study_sync_reformation' retrieved from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:29:13.149+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:29:13.149+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-18T18:29:13.195+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:29:13.194+0000] {dag.py:4180} INFO - Setting next_dagrun for study_sync_reformation to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-18T18:29:13.219+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/study_sync_reformation.py took 0.135 seconds
+[2025-02-18T18:29:43.473+0000] {processor.py:186} INFO - Started process (PID=179) to work on /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:29:43.474+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/study_sync_reformation.py for tasks to queue
+[2025-02-18T18:29:43.476+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:29:43.476+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:29:43.494+0000] {processor.py:925} INFO - DAG(s) 'study_sync_reformation' retrieved from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:29:43.522+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:29:43.521+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-18T18:29:43.551+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:29:43.551+0000] {dag.py:4180} INFO - Setting next_dagrun for study_sync_reformation to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-18T18:29:43.577+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/study_sync_reformation.py took 0.110 seconds
+[2025-02-18T18:30:13.907+0000] {processor.py:186} INFO - Started process (PID=184) to work on /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:30:13.908+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/study_sync_reformation.py for tasks to queue
+[2025-02-18T18:30:13.911+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:30:13.911+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:30:13.931+0000] {processor.py:925} INFO - DAG(s) 'study_sync_reformation' retrieved from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:30:13.959+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:30:13.959+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-18T18:30:13.993+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:30:13.992+0000] {dag.py:4180} INFO - Setting next_dagrun for study_sync_reformation to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-18T18:30:14.025+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/study_sync_reformation.py took 0.126 seconds
+[2025-02-18T18:30:44.241+0000] {processor.py:186} INFO - Started process (PID=189) to work on /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:30:44.243+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/study_sync_reformation.py for tasks to queue
+[2025-02-18T18:30:44.246+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:30:44.246+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:30:44.266+0000] {processor.py:925} INFO - DAG(s) 'study_sync_reformation' retrieved from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:30:44.294+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:30:44.293+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-18T18:30:44.330+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:30:44.330+0000] {dag.py:4180} INFO - Setting next_dagrun for study_sync_reformation to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-18T18:30:44.356+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/study_sync_reformation.py took 0.121 seconds
+[2025-02-18T18:31:14.528+0000] {processor.py:186} INFO - Started process (PID=194) to work on /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:31:14.529+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/study_sync_reformation.py for tasks to queue
+[2025-02-18T18:31:14.531+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:31:14.531+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:31:14.548+0000] {processor.py:925} INFO - DAG(s) 'study_sync_reformation' retrieved from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:31:14.582+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:31:14.582+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-18T18:31:14.613+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:31:14.613+0000] {dag.py:4180} INFO - Setting next_dagrun for study_sync_reformation to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-18T18:31:14.644+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/study_sync_reformation.py took 0.122 seconds
+[2025-02-18T18:31:45.027+0000] {processor.py:186} INFO - Started process (PID=199) to work on /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:31:45.028+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/study_sync_reformation.py for tasks to queue
+[2025-02-18T18:31:45.031+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:31:45.030+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:31:45.058+0000] {processor.py:925} INFO - DAG(s) 'study_sync_reformation' retrieved from /opt/airflow/dags/study_sync_reformation.py
+[2025-02-18T18:31:45.096+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:31:45.096+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-18T18:31:45.140+0000] {logging_mixin.py:190} INFO - [2025-02-18T18:31:45.140+0000] {dag.py:4180} INFO - Setting next_dagrun for study_sync_reformation to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-18T18:31:45.162+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/study_sync_reformation.py took 0.142 seconds

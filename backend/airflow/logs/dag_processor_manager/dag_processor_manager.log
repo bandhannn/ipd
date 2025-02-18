@@ -1,0 +1,70 @@
+[2025-02-18T18:28:11.566+0000] {manager.py:483} INFO - Processing files using up to 2 processes at a time 
+[2025-02-18T18:28:11.573+0000] {manager.py:484} INFO - Process each file at most once every 30 seconds
+[2025-02-18T18:28:11.573+0000] {manager.py:485} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-02-18T18:28:11.574+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2025-02-18T18:28:11.587+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2025-02-18T18:28:11.689+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                      PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run      Last # of DB Queries
+-------------------------------------------  -----  ---------  --------  ----------  --------------  ----------  ----------------------
+/opt/airflow/dags/study_sync_reformation.py    164  0.03s             0           0                                                   0
+================================================================================
+[2025-02-18T18:28:41.994+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                    PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+-------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/study_sync_reformation.py                           1           0  0.78s           2025-02-18T18:28:12                      45
+================================================================================
+[2025-02-18T18:29:12.037+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                    PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+-------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/study_sync_reformation.py                           1           0  0.15s           2025-02-18T18:28:42                      12
+================================================================================
+[2025-02-18T18:29:42.420+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                    PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+-------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/study_sync_reformation.py                           1           0  0.16s           2025-02-18T18:29:13                      12
+================================================================================
+[2025-02-18T18:30:12.867+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                    PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+-------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/study_sync_reformation.py                           1           0  0.13s           2025-02-18T18:29:43                      12
+================================================================================
+[2025-02-18T18:30:43.199+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                    PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+-------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/study_sync_reformation.py                           1           0  0.15s           2025-02-18T18:30:14                      12
+================================================================================
+[2025-02-18T18:31:13.492+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                    PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+-------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/study_sync_reformation.py                           1           0  0.15s           2025-02-18T18:30:44                      12
+================================================================================
+[2025-02-18T18:31:43.973+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                    PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+-------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/study_sync_reformation.py                           1           0  0.15s           2025-02-18T18:31:14                      12
+================================================================================
+[2025-02-18T18:31:48.469+0000] {manager.py:465} INFO - Exiting gracefully upon receiving signal 15
