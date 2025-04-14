@@ -111,7 +111,6 @@ app.get('/active-groups/:groupId', async (req, res) => {
     }
 });
 
-
 // Get user profile information
 app.get('/user-profile/:email', async (req, res) => {
     const { email } = req.params;

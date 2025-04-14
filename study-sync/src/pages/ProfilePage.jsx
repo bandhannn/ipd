@@ -111,6 +111,7 @@ const ProfilePage = () => {
           email: formData.email,
           primaryDomain: formData.primaryDomain,
           studyTime: formData.studyTime,
+          
           year: formData.year,
           groupSize: formData.groupSize
         }),

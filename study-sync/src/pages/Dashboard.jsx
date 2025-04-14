@@ -37,12 +37,10 @@ const Dashboard = () => {
       })
       .catch(error => console.error("Error fetching user data:", error));
 
-    // Hardcoded notifications
     setNotifications([
       'Welcome! You have entered a group.',
       'Your profile has been updated successfully.',
-      'New study materials are available in your group.',
-      `Based on group availability, the best time for everyone to study together is ${preferredTime} !`
+      `Based on group availability, the best time for everyone to study together is Evening!`
     ]);
   }, [userEmail]);
 

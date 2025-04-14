@@ -139,7 +139,7 @@ const Features = () => {
           <div className="grid md:grid-cols-4 gap-8">
             {[
               { icon: Target, title: "Set Your Goals", description: "Define your academic objectives and learning preferences" },
-              { icon: Users, title: "Get Matched", description: "AI pairs you with compatible study partners" },
+              { icon: Users, title: "Get Matched", description: "We pair you with compatible study partners" },
               { icon: Clock, title: "Schedule Sessions", description: "Automatically find the best time for group study" },
               { icon: Award, title: "Track Progress", description: "Monitor your improvement with detailed analytics" },
             ].map((step, index) => (
