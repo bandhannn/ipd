@@ -79,6 +79,7 @@ app.get('/group-members/:groupId', async (req, res) => {
 // Get active groups with their primary domain and member count
 app.get('/active-groups/:groupId', async (req, res) => {
     const { groupId } = req.params;
+    
     try {
         // Fetch primary domain from groups table
         const groupResult = await pool.query(
@@ -90,16 +91,16 @@ app.get('/active-groups/:groupId', async (req, res) => {
             return res.status(404).json({ message: 'Group not found' });
         }
 
-        const primaryDomain = groupResult.rows[0].primary_domain;
+         const primaryDomain = groupResult.rows[0].primary_domain;
 
         // Fetch member count using existing group-members route
         const membersResult = await pool.query(
             'SELECT COUNT(*) as member_count FROM users WHERE group_id = $1',
             [groupId]
         );
-
+        
         const memberCount = membersResult.rows[0].member_count;
-
+        
         res.json({
             primary_domain: primaryDomain,
             member_count: memberCount
@@ -503,28 +504,119 @@ io.on("connection", (socket) => {
 
 
 // Fetch 10 quiz questions based on the user's primary domain
+    // app.get('/get-quiz/:email', async (req, res) => {
+    //     try {
+    //         const { email } = req.params;
+            
+    //         // Get user's primary domain
+    //         const userQuery = await pool.query('SELECT primary_domain FROM users WHERE email = $1', [email]);
+    //         if (userQuery.rows.length === 0) return res.status(404).json({ error: 'User not found' });
+            
+    //         const userDomain = userQuery.rows[0].primary_domain;
+            
+    //         // Fetch 10 random quiz questions for that domain
+    //         const quizQuery = await pool.query(
+    //             'SELECT id, question, option_a, option_b, option_c, option_d,correct_option FROM quiz_questions WHERE domain = $1 ORDER BY RANDOM() LIMIT 10',
+    //             [userDomain]
+    //         );
+            
+    //         res.json(quizQuery.rows);
+    //     } catch (error) {
+    //         console.error('Error fetching quiz questions:', error);
+    //         res.status(500).json({ error: 'Internal Server Error' });
+    //     }
+    // });
+
+// Add this route to handle quiz questions with dynamic difficulty
 app.get('/get-quiz/:email', async (req, res) => {
     try {
         const { email } = req.params;
         
-        // Get user's primary domain
-        const userQuery = await pool.query('SELECT primary_domain FROM users WHERE email = $1', [email]);
-        if (userQuery.rows.length === 0) return res.status(404).json({ error: 'User not found' });
-        
-        const userDomain = userQuery.rows[0].primary_domain;
-        
-        // Fetch 10 random quiz questions for that domain
-        const quizQuery = await pool.query(
-            'SELECT id, question, option_a, option_b, option_c, option_d,correct_option FROM quiz_questions WHERE domain = $1 ORDER BY RANDOM() LIMIT 10',
-            [userDomain]
+        // Fetch user's domain and rating
+        const userQuery = await pool.query(
+            'SELECT primary_domain, rating FROM users WHERE email = $1',
+            [email]
         );
+        if (userQuery.rows.length === 0) {
+            return res.status(404).json({ error: 'User not found' });
+        }
         
-        res.json(quizQuery.rows);
+        const { primary_domain, rating } = userQuery.rows[0];
+        
+        // Determine difficulty levels
+        let difficulties = [];
+        if (rating < 1200) difficulties = ['easy'];
+        else if (rating < 1400) difficulties = ['easy', 'medium'];
+        else difficulties = ['medium', 'hard'];
+
+        // Build dynamic query
+        let query = '';
+        const params = [primary_domain];
+        
+        if (difficulties.length === 2) {
+            query = `
+                (SELECT * FROM quiz_questions 
+                 WHERE domain = $1 AND difficulty = $2 
+                 ORDER BY RANDOM() LIMIT 5)
+                UNION ALL
+                (SELECT * FROM quiz_questions 
+                 WHERE domain = $1 AND difficulty = $3 
+                 ORDER BY RANDOM() LIMIT 5)
+                ORDER BY RANDOM()
+            `;
+            params.push(difficulties[0], difficulties[1]);
+        } else {
+            query = `
+                SELECT * FROM quiz_questions 
+                WHERE domain = $1 AND difficulty = $2 
+                ORDER BY RANDOM() LIMIT 10
+            `;
+            params.push(difficulties[0]);
+        }
+
+        // Execute query
+        const { rows } = await pool.query(query, params);
+        
+        // Shuffle options and remap correct answers
+        const processed = rows.map(question => {
+            const options = [
+                question.option_a,
+                question.option_b, 
+                question.option_c,
+                question.option_d
+            ];
+            
+            // Shuffle options while tracking original positions
+            const shuffled = options
+                .map((value, index) => ({ value, index }))
+                .sort(() => Math.random() - 0.5);
+            
+            // Find new position of correct answer
+            const correctIndex = shuffled.findIndex(
+                item => item.index === ['A','B','C','D'].indexOf(question.correct_option)
+            );
+            
+            return {
+                ...question,
+                option_a: shuffled[0].value,
+                option_b: shuffled[1].value,
+                option_c: shuffled[2].value,
+                option_d: shuffled[3].value,
+                correct_option: ['A','B','C','D'][correctIndex]
+            };
+        });
+
+        res.json(processed);
+        
     } catch (error) {
-        console.error('Error fetching quiz questions:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Quiz Error:', error);
+        res.status(500).json({ error: 'Server error' });
     }
 });
+
+
+
+
 
 // Submit quiz and update user rating
 app.post("/submit-quiz", async (req, res) => {

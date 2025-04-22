@@ -88,6 +88,7 @@ const Dashboard = () => {
               <Typography variant="h6">{user?.username || 'Loading...'}</Typography>
               <Typography variant="subtitle1" color="text.secondary">
                 {group?.primary_domain || 'User Domain'}
+                
               </Typography>
             </CardContent>
           </Card>
@@ -148,6 +149,7 @@ const Dashboard = () => {
                 <Typography variant="h6">Active Study Group</Typography>
                 
               </Box>
+              
               {group ? (
                 <Paper 
                   key={group.primary_domain} 
