@@ -10,8 +10,8 @@ import pkg from "pg";
 import multer from "multer";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
-import pdfParse from 'pdf-parse';
-import { pipeline } from '@xenova/transformers';
+// import pdfParse from 'pdf-parse';
+// import { pipeline } from '@xenova/transformers';
 
 dotenv.config();
 const { Pool } = pkg;
@@ -54,11 +54,11 @@ app.use(express.json());
 
 // PostgreSQL connection setup
 const pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    database: "postgres",
-    password: "Akshay2407@", // Replace with your actual password
-    port: 5432,
+    user: import.meta.env.VITE_USER,
+    host: import.meta.env.VITE_HOST,
+    database: import.meta.env.VITE_DATABASE,
+    password: import.meta.env.VITE_PASSWORD, 
+    port: import.meta.env.VITE_PORT
 });
 
 
@@ -196,17 +196,17 @@ app.get("/user-info", authenticateToken, async (req, res) => {
 
 //Function to summarize text
 
-async function summarizeText(text) {
-    try {
-        // Summarize the text
-        const summarizer = await pipeline('summarization', 'Xenova/bart-large-cnn');
-        const summary = await summarizer(text, { max_length: 150, min_length: 50 });
-        return summary[0].summary_text;
-    } catch (error) {
-        console.error('Error summarizing text:', error);
-        return 'Summary generation failed.';
-    }
-}
+// async function summarizeText(text) {
+//     try {
+//         // Summarize the text
+//         const summarizer = await pipeline('summarization', 'Xenova/bart-large-cnn');
+//         const summary = await summarizer(text, { max_length: 150, min_length: 50 });
+//         return summary[0].summary_text;
+//     } catch (error) {
+//         console.error('Error summarizing text:', error);
+//         return 'Summary generation failed.';
+//     }
+// }
 
 app.get("/group-preferred-study-time/:email", async (req, res) => {
     const userEmail = req.params.email;
@@ -317,26 +317,26 @@ app.post('/upload', upload.single('file'), async (req, res) => {
         io.to(group).emit("message", newMessage);
 
         // If it's a PDF, process asynchronously
-        if (req.file.mimetype === 'application/pdf') {
-            setTimeout(async () => {
-                try {
-                    const pdfData = await pdfParse(fs.readFileSync(req.file.path));
-                    const extractedText = pdfData.text;
-                    if (extractedText.length > 50) {
-                        summary = await summarizeText(extractedText);
-                    }
+        // if (req.file.mimetype === 'application/pdf') {
+        //     setTimeout(async () => {
+        //         try {
+        //             const pdfData = await pdfParse(fs.readFileSync(req.file.path));
+        //             const extractedText = pdfData.text;
+        //             if (extractedText.length > 50) {
+        //                 summary = await summarizeText(extractedText);
+        //             }
 
-                    // Update database with summary
-                    await pool.query('UPDATE messages SET summary = $1 WHERE id = $2', [summary, messageId]);
+        //             // Update database with summary
+        //             await pool.query('UPDATE messages SET summary = $1 WHERE id = $2', [summary, messageId]);
 
-                    // Emit updated message with summary
-                    io.to(group).emit("message", { ...newMessage, summary });
+        //             // Emit updated message with summary
+        //             io.to(group).emit("message", { ...newMessage, summary });
 
-                } catch (error) {
-                    console.error("Error processing PDF:", error);
-                }
-            }, 500);
-        }
+        //         } catch (error) {
+        //             console.error("Error processing PDF:", error);
+        //         }
+        //     }, 500);
+        // }
 
         res.json({ fileUrl });
 
