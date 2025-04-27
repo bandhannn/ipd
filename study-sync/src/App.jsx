@@ -1,5 +1,8 @@
 import React from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route,useLocation } from 'react-router-dom';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -15,6 +18,7 @@ import Quizpage from './pages/Quizpage';
 import QuizResults from './pages/QuizResults';
 
 const App = () => {
+
   const location = useLocation(); // Get the current location (path)
 
   const isProfilePage = location.pathname === '/profile'; 
@@ -29,6 +33,8 @@ const App = () => {
         {!(isProfilePage || isDashboard || isChatpage || isQuizpage || isQuizresult) && <Navbar />}
 
         {/* Define routes here */}
+       
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -44,6 +50,7 @@ const App = () => {
         <Route path="/chat" element={<Chatpage  />} />
         <Route path="/quizzes" element={<Quizpage  />} />
         <Route path="/quiz-results" element={<QuizResults  />} />
+        
         </Routes>
         
         {/* Footer remains the same */}

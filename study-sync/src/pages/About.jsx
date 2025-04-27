@@ -71,6 +71,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Users, Award, Compass, Brain, MessageSquare, FileText, Clock, Target, RefreshCw } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 
 const About = () => {
   const fadeIn = {
@@ -79,7 +81,10 @@ const About = () => {
     exit: { opacity: 0, y: -20 },
     transition: { duration: 0.6 }
   };
-
+  const navigate = useNavigate();
+  const submit = ()=>{
+    navigate('/login');
+  }
   return (
     <motion.div
       className="pt-16 bg-gradient-to-b from-white to-blue-50"
@@ -349,7 +354,7 @@ const About = () => {
             >
               <h3 className="text-2xl font-bold mb-4">Join StudySync Today</h3>
               <p className="text-indigo-100 mb-6">Experience the future of collaborative learning!</p>
-              <button className="bg-white text-indigo-600 px-8 py-3 rounded-full font-medium hover:bg-indigo-50 transition duration-300 shadow-md">
+              <button className="bg-white text-indigo-600 px-8 py-3 rounded-full font-medium hover:bg-indigo-50 transition duration-300 shadow-md" onClick={submit}>
                 Get Started
               </button>
             </motion.div>
